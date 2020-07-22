@@ -25,8 +25,15 @@ class ChartTableViewController: UITableViewController {
         songs.removeAll()
         tableView.reloadData()
         
-        loadSongsIntoTable()
-        refreshControl?.endRefreshing()
+        if !songs.isEmpty {
+            sortSongsByDuration(option: 0)
+        } else {
+            loadSongsIntoTable()
+        }
+        
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
     }
     
     private func setNavigationBar() {
