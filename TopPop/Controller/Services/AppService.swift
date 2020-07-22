@@ -95,7 +95,7 @@ class AppService {
                     return
                 }
                 
-                guard let coverURLString = jsonResponse["cover"] as? String, let albumName = jsonResponse["title"] as? String else {
+                guard let coverURLString = jsonResponse["cover_big"] as? String, let albumName = jsonResponse["title"] as? String else {
                     fatalError()
                 }
                 
