@@ -14,10 +14,19 @@ class SongTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+//        configureViews()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+//        configureViews()
+    }
+    
+    func configureViews() {
+        print("eto me")
+        songNameLabel.adjustsFontSizeToFitWidth = true
+        songNameLabel.numberOfLines = 0
+        songNameLabel.minimumScaleFactor = 0.5
     }
 
 }

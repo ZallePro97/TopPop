@@ -50,11 +50,13 @@ class InfoViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.anotherSongsNames = albumSongs
                 
                 // ako u albumu ostalih pjesama ima 1 pjesma i ako se ta jedna zove isto kao i pjesma koju sam stisnuo to znaci da taj album ne postoji vec je samo tako spremljen u bazi
-                // zato sakrijem i tableview i labelu imena albuma jer su redundantni
+                // zato sakrijem tableview jer nam ne treba
                 if self.anotherSongsNames.count == 1 && self.anotherSongsNames[0] == song.songName {
                     self.tableView.isHidden = true
-                    self.albumNameLabel.isHidden = true
+                    self.albumNameLabel.text = "This song is a single"
                 } else {
+                    //makni iz liste ostalih pjesama iz albuma ovu koju trenutno gledam
+                    self.anotherSongsNames.remove(at: self.anotherSongsNames.firstIndex(of: song.songName)!)
                     self.tableView.reloadData()
                 }
                 
