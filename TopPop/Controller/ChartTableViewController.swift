@@ -17,12 +17,14 @@ class ChartTableViewController: UITableViewController {
         setNavigationBar()
         loadSongsIntoTable()
         
-        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), for: UIControl.Event.valueChanged)
     }
     
-    @objc func refresh(sender: AnyObject) {
+    @objc func refresh(_ sender: AnyObject) {
         songs.removeAll()
         tableView.reloadData()
+        
         loadSongsIntoTable()
         refreshControl?.endRefreshing()
     }
@@ -31,7 +33,7 @@ class ChartTableViewController: UITableViewController {
         navigationController?.navigationBar.barTintColor = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 1.0)
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
-        navigationItem.leftBarButtonItem?.title = "Menu"
+        navigationItem.leftBarButtonItem?.title = "Sort"
     }
     
     private func loadSongsIntoTable() {
